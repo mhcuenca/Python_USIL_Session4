@@ -1,0 +1,15 @@
+language: python
+python:
+  - 3.6
+before_install:
+  - python --version
+  - pip install -U pip
+addons:
+  sonarcloud:
+    organization: "usil-ogranization"
+install:
+  - pip install -r requirements.txt
+script:
+  - pytest -v  --cov --cov-report=xml --cov-report=html
+  - behave ./test_aceptance/
+  - sonar-scanner
